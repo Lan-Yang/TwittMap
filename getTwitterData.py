@@ -2,7 +2,7 @@ import tweepy
 import sys
 import psycopg2
 
-conn = psycopg2.connect(dbname='Twitter', user='postgres', password='postgres', host='127.0.0.1')
+conn = psycopg2.connect(dbname='Twitter', user='postgres', password='postgres', host='twitmapdb.cgbzekjkgmas.us-east-1.rds.amazonaws.com')
 cur = conn.cursor()
 
 infile = open("keys.txt","r")
@@ -26,17 +26,20 @@ keyword = words[0]
 class CustomStreamListener(tweepy.StreamListener):
     def on_status(self, status):
         if status.coordinates:
-        	text = status.text.encode('utf-8')
-        	text = text.replace("'","*")
-        	text = text.lower()
-        	if keyword in text:
-        		longitude = status.coordinates['coordinates'][0]
-        		latitude = status.coordinates['coordinates'][1]
-        		sql = r"INSERT INTO twit(t_longitude, t_latitude, t_content) VALUES (%s, %s, '%s')"%(longitude, latitude, text)
-        		print sql
-        	# Exclude special symbols in text
-        		cur.execute(sql)
-        		conn.commit()
+            text = status.text.encode('utf-8')
+            text = text.replace("'","*")
+            text = text.lower()
+            for i in range(length):
+                keyword = words[i - 1]
+                if keyword in text:
+                    longitude = status.coordinates['coordinates'][0]
+                    latitude = status.coordinates['coordinates'][1]
+                    sql = r"INSERT INTO twit(t_longitude, t_latitude, t_content) VALUES (%s, %s, '%s')"%(longitude, latitude, text)
+                    print sql
+            # Exclude special symbols in text
+                    cur.execute(sql)
+                    conn.commit()
+
             # print status.coordinates['coordinates'], status.text.encode('utf-8')
 
     def on_error(self, status_code):
