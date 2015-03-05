@@ -29,16 +29,23 @@ class CustomStreamListener(tweepy.StreamListener):
             text = status.text.encode('utf-8')
             text = text.replace("'","*")
             text = text.lower()
-            for i in range(length):
-                keyword = words[i - 1]
-                if keyword in text:
-                    longitude = status.coordinates['coordinates'][0]
-                    latitude = status.coordinates['coordinates'][1]
-                    sql = r"INSERT INTO twit(t_longitude, t_latitude, t_content) VALUES (%s, %s, '%s')"%(longitude, latitude, text)
-                    print sql
+            # for i in range(length):
+            #     keyword = words[i - 1]
+            #     if keyword in text:
+            #         longitude = status.coordinates['coordinates'][0]
+            #         latitude = status.coordinates['coordinates'][1]
+            #         sql = r"INSERT INTO twit(t_longitude, t_latitude, t_content) VALUES (%s, %s, '%s')"%(longitude, latitude, text)
+            #         print sql
+            # # Exclude special symbols in text
+            #         cur.execute(sql)
+            #         conn.commit()
+            longitude = status.coordinates['coordinates'][0]
+            latitude = status.coordinates['coordinates'][1]
+            sql = r"INSERT INTO twit(t_longitude, t_latitude, t_content) VALUES (%s, %s, '%s')"%(longitude, latitude, text)
+            print sql
             # Exclude special symbols in text
-                    cur.execute(sql)
-                    conn.commit()
+            cur.execute(sql)
+            conn.commit()
 
             # print status.coordinates['coordinates'], status.text.encode('utf-8')
 

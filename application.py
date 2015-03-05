@@ -2,7 +2,7 @@ import tweepy
 import sys
 import psycopg2
 from flask import Flask, render_template, jsonify
-app = Flask(__name__)
+application = app = Flask(__name__)
 
 conn = psycopg2.connect(dbname='Twitter', user='postgres', password='postgres', host='twitmapdb.cgbzekjkgmas.us-east-1.rds.amazonaws.com')
 cur = conn.cursor()

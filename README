@@ -1,1 +1,18 @@
-# TwitterMap
+# TwitterMap - ly2331
+The project is written in Python, HTML and Javascript.
+Database that I use is PostgreSQL, a relational database just like MySQL.
+For web framework, I use FLASK.
+To reflect twits distribution, I always pick the latest 500 twits to be shown.
+
+There are three major files for this project:
+1. getTwitterData.py 
+It uses Twitter Streaming API to gain twits. And writes them to the database.
+This program is run as daemon.
+2. hello.py
+It's the main program for web server.
+3. twitMap.html
+In this script, I use Ajax to realize keeping data on the map change as time.
+Different keywords can be selected.
+
+The database is deployed on Amazon AWS RDS, and the two programs are deployed on EC2 instance.
+result1.png shows the all latest 500 twits distribution, and result2.png shows the twits distribution of keyword "snow"
