@@ -1,6 +1,7 @@
 import tweepy
 import sys
 import psycopg2
+import datetime
 from flask import Flask, render_template, jsonify
 application = app = Flask(__name__)
 
@@ -19,7 +20,10 @@ def hello_world():
 def send_data(keyword):
 	keyword = keyword.encode('utf-8')
 	data = []
-	sql = r"select t_longitude, t_latitude, t_content from twit order by t_id desc limit 500"
+	timelimit = datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
+	# sql = r"select t_longitude, t_latitude, t_content from twit order by t_id desc limit 500"
+	sql = r"select t_longitude, t_latitude, t_content from twit where t_time > Timestamp '%s';"%timelimit
+	# print sql
 	cur.execute(sql)
 	for line in cur:
 		text = line[2].split()

@@ -26,12 +26,14 @@ keyword = words[0]
 class CustomStreamListener(tweepy.StreamListener):
     def on_status(self, status):
         if status.coordinates:
+            time = status.created_at
             text = status.text.encode('utf-8')
             text = text.replace("'","*")
             text = text.lower()
             longitude = status.coordinates['coordinates'][0]
             latitude = status.coordinates['coordinates'][1]
-            sql = r"INSERT INTO twit(t_longitude, t_latitude, t_content) VALUES (%s, %s, '%s')"%(longitude, latitude, text)
+            sql = r"INSERT INTO twit(t_longitude, t_latitude, t_content, t_time) VALUES (%s, %s, '%s', TIMESTAMP '%s')"%(longitude, latitude, text, time)
+            print sql
             cur.execute(sql)
             conn.commit() # Write SQL results to RDS
 
