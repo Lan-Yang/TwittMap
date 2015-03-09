@@ -1,0 +1,2 @@
+crontab -e
+/etc/init.d/crond restart
