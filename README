@@ -1,23 +1,16 @@
 # TwitterMap
-The project is written in Python, HTML and Javascript.
-Database that I use is PostgreSQL, a relational database just like MySQL.
-For web framework, I use FLASK.
-To reflect twits distribution, I always pick the latest 500 twits to be shown.
+The project is written in Python, HTML and Javascript. I used PostgreSQL to store tweet ID, longitude, latitude, 
+content, time (UTC). For web framework, I used FLASK. To reflect tweets distribution in near real time, I always pick  
+tweets published in last 3 minutes.
 
 There are three major files for this project:
 1. getTwitterData.py 
-It uses Twitter Streaming API to gain twits. And writes them to the database.
-This program is run as daemon.
+Used Twitter Streaming API to fetch tweets and writes relational data to the database.
+This program is run as daemon, guaranteed by cron.
 2. application.py
-It's the main program for web server.
-3. twitMap.html
-In this script, I use Ajax to realize keeping data on the map change as time.
+Main program for web server.
+3. templates/twitMap.html
+Client html page, used Ajax for polling real-time tweet data, provided by JQuery library.
 Different keywords can be selected.
 
-The database is deployed on Amazon AWS RDS, and the two programs are deployed on EC2 instance.
-result1.png shows the all latest 500 twits distribution, and result2.png shows the twits distribution of keyword "snow"
-
-
-Utilized Twitter API to fetch tweet updates and store in PostgreSQL database.
-Generated real-time tweets heatmap using Ajax and python.
-Deployed the whole project 
+The database is deployed on Amazon AWS RDS, application is deployed on Elastic BeanStalk.
