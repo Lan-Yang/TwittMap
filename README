@@ -1,4 +1,4 @@
-# TwitterMap - ly2331
+# TwitterMap
 The project is written in Python, HTML and Javascript.
 Database that I use is PostgreSQL, a relational database just like MySQL.
 For web framework, I use FLASK.
@@ -8,7 +8,7 @@ There are three major files for this project:
 1. getTwitterData.py 
 It uses Twitter Streaming API to gain twits. And writes them to the database.
 This program is run as daemon.
-2. hello.py
+2. application.py
 It's the main program for web server.
 3. twitMap.html
 In this script, I use Ajax to realize keeping data on the map change as time.
