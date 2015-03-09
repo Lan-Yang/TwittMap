@@ -17,6 +17,7 @@ def hello_world():
 
 @app.route('/twit/<keyword>')
 def send_data(keyword):
+	keyword = keyword.encode('utf-8')
 	data = []
 	sql = r"select t_longitude, t_latitude, t_content from twit order by t_id desc limit 500"
 	cur.execute(sql)

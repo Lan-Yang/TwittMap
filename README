@@ -16,3 +16,8 @@ Different keywords can be selected.
 
 The database is deployed on Amazon AWS RDS, and the two programs are deployed on EC2 instance.
 result1.png shows the all latest 500 twits distribution, and result2.png shows the twits distribution of keyword "snow"
+
+
+Utilized Twitter API to fetch tweet updates and store in PostgreSQL database.
+Generated real-time tweets heatmap using Ajax and python.
+Deployed the whole project 
