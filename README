@@ -13,4 +13,4 @@ Main program for web server.
 Client html page, used Ajax for polling real-time tweet data, provided by JQuery library.
 Different keywords can be selected.
 
-The database is deployed on Amazon AWS RDS, application is deployed on Elastic BeanStalk.
+The database is deployed on Amazon AWS RDS, application is deployed on Elastic BeanStalk, can be visited at http://twitmap-env-2.elasticbeanstalk.com/
